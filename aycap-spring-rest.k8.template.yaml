@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: prjd
-  name: prjd-spring-rest
+  namespace: aycap
+  name: aycap-spring-rest
   labels:
-    app: prjd-spring-rest
+    app: aycap-spring-rest
     type: jenkins-build
 spec:
   replicas: 3
@@ -16,18 +16,18 @@ spec:
   template:
     metadata:
       labels:
-        app: prjd-spring-rest
+        app: aycap-spring-rest
     spec:
       containers:
-      - name: prjd-spring-rest
+      - name: aycap-spring-rest
         image: <%= new_image %>
         env:
-          - name: prjd_JDBC_URL
-            value: jdbc:mysql://prjd-mysql/hotel
-          - name: prjd_DB_USER
+          - name: AYCAP_JDBC_URL
+            value: jdbc:mysql://aycap-mysql/hotel
+          - name: AYCAP_DB_USER
             value: root
-          - name: prjd_DB_PASSWORD
-            value: prjd_mysql_password
+          - name: AYCAP_DB_PASSWORD
+            value: aycap_mysql_password
 
         livenessProbe:
           initialDelaySeconds: 45
@@ -54,10 +54,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: prjd
-  name: prjd-spring-rest
+  namespace: aycap
+  name: aycap-spring-rest
   labels:
-    app: prjd-spring-rest
+    app: aycap-spring-rest
 spec:
   type: NodePort
   ports:
@@ -70,4 +70,4 @@ spec:
       protocol: TCP
       name: http-admin
   selector:
-    app: prjd-spring-rest
+    app: aycap-spring-rest

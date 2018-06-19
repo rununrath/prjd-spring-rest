@@ -22,11 +22,11 @@ spec:
       - name: prjd-spring-rest
         image: <%= new_image %>
         env:
-          - name: prjd_JDBC_URL
+          - name: AYCAP_JDBC_URL
             value: jdbc:mysql://prjd-mysql/hotel
-          - name: prjd_DB_USER
+          - name: AYCAP_DB_USER
             value: root
-          - name: prjd_DB_PASSWORD
+          - name: AYCAP_DB_PASSWORD
             value: prjd_mysql_password
 
         livenessProbe:
